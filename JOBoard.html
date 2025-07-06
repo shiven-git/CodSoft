@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sabko Job Milegi - Find Your Dream Job</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.22.5/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #f5f5f5;
+    }
+    #root {
+      min-height: 100vh;
+    }
+    nav {
+      padding: 1rem 2rem;
+      background: #1f2937;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    nav h1 {
+      color: #60a5fa;
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+    nav button {
+      background-color: transparent;
+      color: #f5f5f5;
+      border: 1px solid #60a5fa;
+      padding: 0.5rem 1rem;
+      margin-left: 0.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    nav button:hover {
+      background-color: #60a5fa;
+      color: #1f2937;
+    }
+    header {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(to right, #60a5fa, #3b82f6);
+      color: white;
+    }
+    header h2 {
+      font-family: 'Raleway', cursive;
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+    section.search-box {
+      padding: 2rem;
+      max-width: 800px;
+      margin: -3rem auto 2rem;
+      background-color: #1f2937;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+    section.search-box input {
+      padding: 1rem;
+      width: 100%;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    section.search-box button {
+      margin-top: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+    }
+    section.featured {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .job-card {
+      background-color: #374151;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      color: white;
+    }
+    .job-card h4 {
+      color: #60a5fa;
+      margin-bottom: 0.5rem;
+    }
+    footer {
+      background-color: #111827;
+      color: #9ca3af;
+      padding: 2rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState } = React;
+
+    const App = () => {
+      const [currentUser, setCurrentUser] = useState(null);
+
+      return (
+        <div>
+          <nav>
+            <h1>Sabko Job Milegi</h1>
+            <div>
+              {currentUser ? (
+                <button onClick={() => setCurrentUser(null)}>Logout</button>
+              ) : (
+                <>
+                  <button onClick={() => setCurrentUser({ name: 'User' })}>Login</button>
+                  <button>Register</button>
+                </>
+              )}
+            </div>
+          </nav>
+
+          <header>
+            <h2 style={{ fontFamily: 'Raleway, cursive', fontWeight: 700, letterSpacing: '1px' }}>Find Your Dream Job</h2>
+            <p>Explore top career opportunities across India.</p>
+          </header>
+
+          <section className="search-box">
+            <input type="text" placeholder="Job Title or Keyword" />
+            <input type="text" placeholder="Location (e.g., Mumbai, Bengaluru)" />
+            <button>Search Jobs</button>
+          </section>
+
+          <section className="featured">
+            <h3 style={{ textAlign: 'center', color: '#f5f5f5', marginBottom: '2rem' }}>Featured Jobs</h3>
+            <div style={{ display: 'grid', gap: '1.5rem', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
+              {[ 
+                { id: 1, title: 'React Developer', company: 'CodSoft India', location: 'Bengaluru, Karnataka', salary: '₹1,00,000/month' },
+                { id: 2, title: 'UI/UX Designer', company: 'Meta India', location: 'Mumbai, Maharashtra', salary: '₹75,000/month' },
+                { id: 3, title: 'Backend Engineer', company: 'NIET', location: 'Greater Noida, UP', salary: '₹80,000/month' },
+                { id: 4, title: 'Digital Marketing Executive', company: 'AdCompany India', location: 'New Delhi, Delhi', salary: '₹65,000/month' },
+                { id: 5, title: 'Data Analyst', company: 'AnalyticsKart', location: 'Gurgaon, Haryana', salary: '₹70,000/month' },
+                { id: 6, title: 'Android Developer', company: 'AppLogics', location: 'Pune, Maharashtra', salary: '₹90,000/month' },
+                { id: 7, title: 'DevOps Engineer', company: 'Apple India', location: 'Chennai, Tamil Nadu', salary: '₹1,10,000/month' },
+                { id: 8, title: 'Content Writer', company: 'Carryminati', location: 'Faridabad, Delhi', salary: '₹40,000/month' }
+              ].map((job) => (
+                <div key={job.id} className="job-card">
+                  <h4>{job.title}</h4>
+                  <p>{job.company} - {job.location}</p>
+                  <p>{job.salary}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <footer>
+            <p>© 2025 Sabko Job Milegi Aur Sabko Internship Milegi On CodSoft</p>
+          </footer>
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>

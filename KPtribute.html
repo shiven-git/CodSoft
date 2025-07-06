@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalpana Chawla - A Tribute</title>
+    <style>
+        /* Basic CSS styling for the tribute page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .container {
+            background-color: #1e293b;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .main-content {
+            background-color: #1e293b;
+        }
+
+        body.dark-mode h2 {
+            color: #60a5fa;
+            border-bottom: 2px solid #334155;
+        }
+
+        body.dark-mode .birth-death {
+            background-color: #334155;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .quote {
+            background-color: #1e40af;
+            color: #e0e7ff;
+            border-left: 5px solid #60a5fa;
+        }
+
+        body.dark-mode .achievements {
+            background-color: #334155;
+        }
+
+        body.dark-mode .achievements li {
+            background-color: #475569;
+            color: #e2e8f0;
+            border-left: 4px solid #60a5fa;
+        }
+
+        body.dark-mode .mission-details {
+            background-color: #713f12;
+            color: #fef3c7;
+        }
+
+        body.dark-mode .legacy {
+            background-color: #14532d;
+            color: #dcfce7;
+        }
+
+        body.dark-mode .footer {
+            border-top: 2px solid #475569;
+            color: #94a3b8;
+        }
+
+        /* Dark mode toggle button */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #3730a3, #1e3a8a);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .dark-mode-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .dark-mode-toggle {
+            background: linear-gradient(45deg, #60a5fa, #3b82f6);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Header with background image */
+        .header-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                              url('https://www.nasa.gov/wp-content/uploads/2023/03/513224main_AC95-0007-10_full.jpg');
+            background-size: contain;
+            background-position: center top;
+            background-repeat: no-repeat;
+            padding: 80px 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+            min-height: 400px;
+        }
+
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.8), rgba(55, 48, 163, 0.6));
+            z-index: 1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 4em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+            font-weight: 300;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #ffffff, #e0e7ff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-style: italic;
+            color: #f0f8ff;
+            margin-bottom: 0;
+            font-size: 1.6em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            font-family: 'Georgia', 'Times New Roman', serif;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        .main-content {
+            padding: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        h2 {
+            color: #3730a3;
+            border-bottom: 2px solid #e0e7ff;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        .profile-image {
+            display: none;
+        }
+
+        .birth-death {
+            text-align: center;
+            background-color: #f3f4f6;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .quote {
+            background-color: #e0e7ff;
+            padding: 20px;
+            border-left: 5px solid #3730a3;
+            margin: 20px 0;
+            font-style: italic;
+            font-size: 1.1em;
+        }
+
+        .achievements {
+            background-color: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .achievements ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .achievements li {
+            background-color: #dbeafe;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #3730a3;
+        }
+
+        .mission-details {
+            background-color: #fef3c7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .legacy {
+            background-color: #f0fdf4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .header-section {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 2.8em;
+                letter-spacing: 1px;
+            }
+            
+            .subtitle {
+                font-size: 1.3em;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .profile-image {
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Mode Toggle Button -->
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+        🌙 Dark Mode
+    </button>
+
+    <div class="container">
+        <!-- Header Section with Background Image -->
+        <div class="header-section">
+            <div class="header-content">
+                <h1>Kalpana Chawla</h1>
+                <p class="subtitle">First Indian-American Woman Astronaut</p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Profile Image -->
+            <!-- Removed profile image as it's now in the header background -->
+            
+            <!-- Birth and Death Dates -->
+            <div class="birth-death">
+                <p>March 17, 1962 - February 1, 2003</p>
+                <p>Born in Karnal, Haryana, India</p>
+            </div>
+
+            <!-- Inspirational Quote -->
+            <div class="quote">
+                "The path from dreams to success does exist. May you have the vision to find it, the courage to get onto it. Wishing you a great journey."
+            </div>
+
+            <!-- Early Life Section -->
+            <h2>Early Life and Dreams</h2>
+            <p>Kalpana Chawla was born in a small town in Karnal, Haryana, India[1][4]. From a very young age, she was fascinated by airplanes and space[14]. As a child, she would spend hours watching planes fly overhead and dreaming of one day joining them in the sky[11]. Her curiosity about flight began when she was just three years old after seeing her first airplane[14].</p>
+            
+            <p>Even as a little girl, Kalpana was determined and independent. She even chose her own name during school admission, selecting "Kalpana" because it means "imagination"[11]. This perfectly captured her dreamy and ambitious nature that would later take her to the stars.</p>
+
+            <!-- Education Section -->
+            <h2>Education and Journey to America</h2>
+            <p>Kalpana graduated from Tagore Baal Niketan Senior Secondary School in Karnal in 1976[1][5]. She then pursued her Bachelor of Science degree in Aeronautical Engineering from Punjab Engineering College in 1982, becoming the first woman to graduate in aeronautical engineering from the college[2][7]. Despite professors trying to discourage her from choosing this field because there were few prospects for girls in aerospace in India, Kalpana remained determined[14].</p>
+            
+            <p>In 1982, she moved to the United States to pursue higher education. She earned her Master of Science degree in Aerospace Engineering from the University of Texas at Arlington in 1984, and later obtained her PhD in Aerospace Engineering from the University of Colorado in 1988[1][3]. She became a naturalized U.S. citizen in 1991[3].</p>
+
+            <!-- Professional Career Section -->
+            <h2>Professional Career</h2>
+            <p>After completing her PhD in 1988, Kalpana began working at NASA Ames Research Center, where she specialized in computational fluid dynamics and research on aircraft[1][3]. Her work focused on simulation of complex air flows encountered around aircraft such as the Harrier in "ground-effect"[1].</p>
+            
+            <p>In 1993, she joined Overset Methods Inc. in California as Vice President and Research Scientist, where she worked on aerodynamic optimization[1][5]. NASA selected her as an astronaut candidate in December 1994, and she began astronaut training at Johnson Space Center in March 1995[1][3].</p>
+
+            <!-- Space Missions Section -->
+            <div class="mission-details">
+                <h2>Space Missions</h2>
+                <p><strong>STS-87 (1997):</strong> Kalpana's first space mission launched on November 19, 1997, aboard Space Shuttle Columbia[1][3]. She served as mission specialist and primary robotic arm operator. During this 16-day mission, she made history as the first Indian-born woman and the first South Asian American woman to fly in space[3]. She completed 252 orbits around Earth, traveling over 6.5 million miles[1][2].</p>
+                
+                <p><strong>STS-107 (2003):</strong> Her second and final mission launched on January 16, 2003, also aboard Columbia[1][3]. This was a 16-day dedicated science mission where the crew conducted approximately 80 experiments[1]. Tragically, on February 1, 2003, Columbia disintegrated during re-entry, killing all seven crew members including Kalpana[1][4].</p>
+            </div>
+
+            <!-- Admirable Qualities Section -->
+            <div class="achievements">
+                <h2>Admirable Qualities</h2>
+                <ul>
+                    <li><strong>Determination:</strong> "I've always been very determined. I don't get easily discouraged" - Kalpana never gave up on her dreams despite facing numerous challenges[9].</li>
+                    <li><strong>Courage:</strong> She had the courage to pursue aerospace engineering when very few women were in this field[14].</li>
+                    <li><strong>Perseverance:</strong> She worked hard for 7 years at NASA before becoming an astronaut, showing incredible patience and dedication[10].</li>
+                    <li><strong>Curiosity:</strong> Her natural curiosity and love for learning drove her to explore the unknown[10].</li>
+                    <li><strong>Breaking Barriers:</strong> She became the first woman of Indian origin to go to space, inspiring millions of girls worldwide[2][9].</li>
+                    <li><strong>Passion for Aviation:</strong> She held multiple pilot licenses including for airplanes, gliders, and seaplanes[1][5].</li>
+                </ul>
+            </div>
+
+            <!-- Legacy Section -->
+            <div class="legacy">
+                <h2>Legacy and Honors</h2>
+                <p>Kalpana Chawla was posthumously awarded the Congressional Space Medal of Honor, the NASA Space Flight Medal, and the NASA Distinguished Service Medal[1][4]. Her legacy continues to inspire young girls and women around the world to pursue careers in science, technology, engineering, and mathematics.</p>
+                
+                <p>Several institutions, buildings, and even an asteroid (51826 Kalpanachawla) have been named in her honor[7]. In 2020, Northrop Grumman named its International Space Station resupply capsule the SS Kalpana Chawla[7].</p>
+            </div>
+
+            <!-- Final Quote -->
+            <div class="quote">
+                "When you look at the stars and galaxy, you feel that you are not just from any particular piece of land, but from the solar system."
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p>In memory of Kalpana Chawla - A true inspiration who reached for the stars and showed us that dreams can indeed become reality.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            const body = document.body;
+            const button = document.querySelector('.dark-mode-toggle');
+            
+            body.classList.toggle('dark-mode');
+            
+            // Update button text
+            if (body.classList.contains('dark-mode')) {
+                button.innerHTML = '☀️ Light Mode';
+            } else {
+                button.innerHTML = '🌙 Dark Mode';
+            }
+            
+            // Save preference to localStorage
+            localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+        }
+        
+        // Load saved preference on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedDarkMode = localStorage.getItem('darkMode');
+            const button = document.querySelector('.dark-mode-toggle');
+            
+            if (savedDarkMode === 'true') {
+                document.body.classList.add('dark-mode');
+                button.innerHTML = '☀️ Light Mode';
+            }
+        });
+    </script>
+</body>
+</html>
